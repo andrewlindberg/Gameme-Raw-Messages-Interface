@@ -74,9 +74,6 @@ public native_query_gameme_stats(plugin, numParams) {
 		ArrayPushArray(QueryCallbackArray, data);
 	}
 	
-	log_to_file("gameme_test.log", "native_query_gameme_stats: queryid -> %i, cb_client -> %i, plugin -> %i, cb_function -> %i, cb_payload -> %i, cb_limit -> %i",
-		data[callback_data_id], cb_client, data[callback_data_plugin], data[callback_data_function], data[callback_data_payload], data[callback_data_limit]);
-	
 	if(cb_client) {
 		log_message("^"%N^" requested ^"%s^" (value ^"%i^")", cb_client, cb_type, data[callback_data_id]);
 	} else {
@@ -93,7 +90,6 @@ public gameme_raw_message() {
 	new type = read_argv_int(1);
 	new userid = read_argv_int(3);
 	new client = find_player("k", userid);
-	log_to_file("gameme_test.log", "gameme_raw_message: args -> %i, client -> %N", argument_count, client);
 
 	switch (type) {
 		case RAW_MESSAGE_CALLBACK_PLAYER, RAW_MESSAGE_RANK, RAW_MESSAGE_PLACE, RAW_MESSAGE_KDEATH, RAW_MESSAGE_SESSION_DATA: {
